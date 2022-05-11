@@ -14,5 +14,5 @@ exports.formatAddress = function(address: PropertyAddress) {
 }
 
 exports.formatShortAddress = function(address: PropertyAddress) {
-  [address.addressLine1, address.addressLine2, address.addressLine3, address.postcode].filter(x => x).join(', ');
+  return [address.addressLine1, address.addressLine2, address.addressLine3, address.postcode].filter(x => x).join(', ');
 }
