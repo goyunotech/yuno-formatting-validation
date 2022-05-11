@@ -12,3 +12,7 @@ declare type PropertyAddress = {
 exports.formatAddress = function(address: PropertyAddress) {
   return Object.values(address).filter(x => x).join(', ');
 }
+
+exports.formatShortAddress = function(address: PropertyAddress) {
+  [address.addressLine1, address.addressLine2, address.addressLine3, address.postcode].filter(x => x).join(', ');
+}
