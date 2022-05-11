@@ -1,18 +1,23 @@
-declare type PropertyAddress = {
-  addressLine1: string,
-  addressLine2: string | null,
-  addressLine3: string | null,
-  city: string | null
-  postcode: string,
-  buildingName: string | null,
-  buildingNumber: string | null,
-  flatName: string | null,
+"use strict";
+exports.__esModule = true;
+exports.formatShortAddress = exports.formatAddress = void 0;
+function formatAddress(address) {
+    return Object.values(address)
+        .filter(function (x) { return x; })
+        .join(', ');
 }
-
-exports.formatAddress = function(address: PropertyAddress) {
-  return Object.values(address).filter(x => x).join(", ");
-};
-
-exports.formatShortAddress = function(address: PropertyAddress) {
-  return [address.buildingNumber, address.buildingName, address.flatName, address.addressLine1, address.addressLine2, address.addressLine3, address.postcode].filter(x => x).join(", ");
-};
+exports.formatAddress = formatAddress;
+function formatShortAddress(address) {
+    return [
+        address.buildingNumber,
+        address.buildingName,
+        address.flatName,
+        address.addressLine1,
+        address.addressLine2,
+        address.addressLine3,
+        address.postcode,
+    ]
+        .filter(function (x) { return x; })
+        .join(', ');
+}
+exports.formatShortAddress = formatShortAddress;
