@@ -1,3 +1,5 @@
+import { parse } from 'postcode';
+
 declare type PropertyAddress = {
   addressLine1: string;
   addressLine2: string | null;
@@ -8,6 +10,10 @@ declare type PropertyAddress = {
   buildingNumber: string | null;
   flatName: string | null;
 };
+
+export function formatPostcode(postcode: string) {
+  return parse(postcode).postcode;
+}
 
 export function formatAddress(address: PropertyAddress) {
   return Object.values(address)

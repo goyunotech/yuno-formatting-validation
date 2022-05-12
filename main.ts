@@ -4,12 +4,13 @@ import {
   isValidPostcode,
   parsePostcode,
   isValidPostcodeFormat,
-} from './validation';
+} from './lib/validation';
 import {
   formatDateDMYHMS,
   formatAddress,
   formatShortAddress,
-} from './formatting';
+  formatPostcode,
+} from './lib/formatting';
 
 export const validator = {
   isValidPostcodeFormat,
@@ -23,8 +24,5 @@ export const formatter = {
   formatAddress,
   formatShortAddress,
   formatDateDMYHMS,
+  formatPostcode,
 };
-
-(async () => {
-  console.log(Object.keys(validator));
-})();
