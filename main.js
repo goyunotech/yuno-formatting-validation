@@ -1,17 +1,16 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.formatter = exports.validator = void 0;
-const validatorLibrary = require("validator");
-const validation_1 = require("./lib/validation");
-const formatting_1 = require("./lib/formatting");
-exports.validator = Object.assign({ isValidPostcodeFormat: validation_1.isValidPostcodeFormat,
-    parsePostcode: validation_1.parsePostcode,
-    isValidPostcode: validation_1.isValidPostcode,
-    isTerminatedPostcode: validation_1.isTerminatedPostcode }, validatorLibrary);
-exports.formatter = {
-    formatAddress: formatting_1.formatAddress,
-    formatShortAddress: formatting_1.formatShortAddress,
-    formatDateDMYHMS: formatting_1.formatDateDMYHMS,
-    formatPostcode: formatting_1.formatPostcode,
+import * as validatorLibrary from 'validator';
+import { isTerminatedPostcode, isValidPostcode, parsePostcode, isValidPostcodeFormat } from './lib/validation';
+import { formatDateDMYHMS, formatAddress, formatShortAddress, formatPostcode } from './lib/formatting';
+export const validator = {
+  isValidPostcodeFormat,
+  parsePostcode,
+  isValidPostcode,
+  isTerminatedPostcode,
+  ...validatorLibrary
 };
-//# sourceMappingURL=main.js.map
+export const formatter = {
+  formatAddress,
+  formatShortAddress,
+  formatDateDMYHMS,
+  formatPostcode
+};
