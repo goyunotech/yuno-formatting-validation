@@ -10,7 +10,7 @@ Methods for string formatting
 Methods for checking values locally 
 - Validating formatting of emails
 - Validating formatting of postcodes
-- All other methods from 
+- All other methods from [validator.js](https://www.npmjs.com/package/validator)
 
 ## Checking 
 **Check methods may make calls to external APIs**
