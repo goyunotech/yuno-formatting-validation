@@ -28,3 +28,21 @@ export function formatShortAddress(address: PropertyAddress) {
     .filter(x => x)
     .join(', ');
 }
+
+const addZero = value => {
+  if (value < 10) {
+    value = `0${value}`;
+  }
+  return value;
+};
+
+export function formatDateDMYHMS() {
+  const today = new Date();
+  const day = addZero(today.getDate());
+  const month = addZero(today.getMonth() + 1);
+  const year = today.getFullYear();
+  const hr = addZero(today.getHours());
+  const min = addZero(today.getMinutes());
+  const sec = addZero(today.getSeconds());
+  return `${day}/${month}/${year} ${hr}:${min}:${sec}`;
+}

@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": ["es2019", "dom"],
+    "lib": ["es2019", "dom", "es2015.promise", "es6"],
     "module": "commonjs",
     "sourceMap": true
   }
