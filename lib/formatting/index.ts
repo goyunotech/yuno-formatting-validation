@@ -25,7 +25,16 @@ export function formatPostcode(postcode: string) {
 }
 
 export function formatAddress(address: PropertyAddress) {
-  return Object.values(address)
+  return [
+    address.flatName,
+    address.buildingNumber,
+    address.buildingName,
+    address.addressLine1,
+    address.addressLine2,
+    address.addressLine3,
+    address.city,
+    address.postcode,
+  ]
     .filter(x => x)
     .join(', ');
 }
