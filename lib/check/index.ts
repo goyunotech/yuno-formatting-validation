@@ -4,6 +4,7 @@ import { Result } from '../shared';
 const postcodeIORequest = axios.create({
   baseURL: 'https://api.postcodes.io/',
   timeout: 3000,
+  validateStatus: () => true,
 });
 
 /**
@@ -34,7 +35,7 @@ export async function checkIfTerminatedPostcode(
     const response = await postcodeIORequest.get(
       `terminated_postcodes/${postcode}`,
     );
-    console.log(response);
+    console.error(response);
     if (response.status) {
       if (response.status === 200) {
         return {
