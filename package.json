@@ -1,13 +1,13 @@
 {
   "name": "yuno-formatting",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": true,
   "description": "",
   "type": "commonjs",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel --out-file bundle.js main.ts"
+    "build": "babel --out-file main.js main.ts"
   },
   "author": "Theo Pearson-Bray",
   "license": "ISC",

@@ -1,20 +1,34 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.checker = exports.formatter = exports.validator = void 0;
-const validatorLibrary = require("validator");
-const validation_1 = require("./lib/validation");
-const formatting_1 = require("./lib/formatting");
-const check_1 = require("./lib/check");
-exports.validator = Object.assign({ isValidPostcode: validation_1.isValidPostcode,
-    parsePostcode: validation_1.parsePostcode }, validatorLibrary);
-exports.formatter = {
-    formatAddress: formatting_1.formatAddress,
-    formatShortAddress: formatting_1.formatShortAddress,
-    formatDateDMYHMS: formatting_1.formatDateDMYHMS,
-    formatPostcode: formatting_1.formatPostcode,
+import * as validatorLibrary from 'validator';
+import { isValidPostcode, parsePostcode } from './lib/validation';
+import { formatDateDMYHMS, formatAddress, formatShortAddress, formatPostcode } from './lib/formatting';
+import { checkIfTerminatedPostcode, checkIfValidPostcode, checkPostcodeForCoordinates } from './lib/check';
+/**
+ * Functions for common string formatting
+ */
+
+export const formatter = {
+  formatAddress,
+  formatShortAddress,
+  formatDateDMYHMS,
+  formatPostcode
 };
-exports.checker = {
-    checkIfValidPostcode: check_1.checkIfValidPostcode,
-    checkIfTerminatedPostcode: check_1.checkIfTerminatedPostcode,
+/**
+ * Functions which perform common validations
+ * These functions are all synchronous and run locally
+ */
+
+export const validator = {
+  isValidPostcode,
+  parsePostcode,
+  ...validatorLibrary
 };
-//# sourceMappingURL=main.js.map
+/**
+ * Functions which perform external checks
+ * These functions may be asynchronous and rely on external services
+ */
+
+export const checker = {
+  checkIfValidPostcode,
+  checkIfTerminatedPostcode,
+  checkPostcodeForCoordinates
+};

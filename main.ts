@@ -6,14 +6,15 @@ import {
   formatShortAddress,
   formatPostcode,
 } from './lib/formatting';
-import { checkIfTerminatedPostcode, checkIfValidPostcode } from './lib/check';
+import {
+  checkIfTerminatedPostcode,
+  checkIfValidPostcode,
+  checkPostcodeForCoordinates,
+} from './lib/check';
 
-export const validator = {
-  isValidPostcode,
-  parsePostcode,
-  ...validatorLibrary,
-};
-
+/**
+ * Functions for common string formatting
+ */
 export const formatter = {
   formatAddress,
   formatShortAddress,
@@ -21,7 +22,22 @@ export const formatter = {
   formatPostcode,
 };
 
+/**
+ * Functions which perform common validations
+ * These functions are all synchronous and run locally
+ */
+export const validator = {
+  isValidPostcode,
+  parsePostcode,
+  ...validatorLibrary,
+};
+
+/**
+ * Functions which perform external checks
+ * These functions may be asynchronous and rely on external services
+ */
 export const checker = {
   checkIfValidPostcode,
   checkIfTerminatedPostcode,
+  checkPostcodeForCoordinates,
 };

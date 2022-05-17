@@ -1,5 +1,8 @@
 import { parse } from 'postcode';
 
+/**
+ * Models OS property data
+ */
 declare type PropertyAddress = {
   addressLine1: string;
   addressLine2: string | null;
@@ -11,7 +14,13 @@ declare type PropertyAddress = {
   flatName: string | null;
 };
 
+/**
+ * Formats a postcode as <outcode><space><incode> in uppercase
+ * e.g. "eH74gT" -> "EH7 4GT"
+ * @param postcode postcode string
+ */
 export function formatPostcode(postcode: string) {
+  // TODO: Consider using the fix method, as it deals with common user mistakes
   return parse(postcode).postcode;
 }
 
@@ -42,6 +51,12 @@ const addZero = value => {
   return value;
 };
 
+/**
+ * Formats current date as zero padded "day/month/year hour:minute:second"
+ * Used in mailObject in react/src/utils/helper.js
+ * // TODO: Determine what this is used for and where it should go
+ * `mailObject` is used in ContactYuno
+ */
 export function formatDateDMYHMS() {
   const today = new Date();
   const day = addZero(today.getDate());
