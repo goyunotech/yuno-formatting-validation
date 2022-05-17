@@ -60,7 +60,7 @@ export async function checkIfTerminatedPostcode(
       error: `Unexpected response from postcodes.io ${String(response)}`,
     };
   } catch (e) {
-    return { ok: false, error: String(e) };
+    return { ok: false, error: `Error thrown by Axios ${e}` };
   }
 }
 
@@ -75,6 +75,7 @@ export async function checkIfValidPostcode(
     const response = await postcodeIORequest.get(
       `postcodes/${postcode}/validate`,
     );
+    console.error(response);
     if (response.data) {
       const isValid = response.data.result ? response.data.result : false;
       return { ok: true, value: isValid };
@@ -84,7 +85,7 @@ export async function checkIfValidPostcode(
       error: `No data returned from postcodes.io ${String(response)}`,
     };
   } catch (e) {
-    return { ok: false, error: String(e) };
+    return { ok: false, error: `Error thrown by Axios ${e}` };
   }
 }
 
@@ -101,6 +102,7 @@ export async function checkPostcodeForCoordinates(
     const response = await postcodeIORequest.get(
       `postcodes/?lon=${longitude}&lat=${latitude}`,
     );
+    console.error(response);
     if (response.data && response.data.postcode) {
       return { ok: true, value: response.data.postcode };
     }
@@ -109,6 +111,6 @@ export async function checkPostcodeForCoordinates(
       error: `No data returned from postcodes.io ${String(response)}`,
     };
   } catch (e) {
-    return { ok: false, error: String(e) };
+    return { ok: false, error: `Error thrown by Axios ${e}` };
   }
 }
