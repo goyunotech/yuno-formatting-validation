@@ -5,13 +5,16 @@ import { parse } from 'postcode';
  */
 declare type PropertyAddress = {
   addressLine1: string;
-  addressLine2: string | null;
-  addressLine3: string | null;
-  city: string | null;
+  addressLine2?: string;
+  addressLine3?: string;
+  city?: string | null;
   postcode: string;
-  buildingName: string | null;
-  buildingNumber: string | null;
-  flatName: string | null;
+  buildingName?: string;
+  buildingNumber?: string;
+  flatName?: string;
+  terminatedPostcode?: {
+    coordinatePostcode: string | null;
+  };
 };
 
 /**
@@ -24,6 +27,16 @@ export function formatPostcode(postcode: string) {
   return parse(postcode).postcode;
 }
 
+/**
+ * If there is a terminated postcode entry for the PropertyAddress, format the postcode
+ * as <original terminated postcode> (<new geolocated postcode>), otherwise <original postcode>
+ */
+function formatPostcodeFromAddress(address: PropertyAddress) {
+  return address.terminatedPostcode?.coordinatePostcode
+    ? `${address.postcode} (${address.terminatedPostcode.coordinatePostcode})`
+    : address.postcode;
+}
+
 export function formatAddress(address: PropertyAddress) {
   return [
     address.flatName,
@@ -33,7 +46,7 @@ export function formatAddress(address: PropertyAddress) {
     address.addressLine2,
     address.addressLine3,
     address.city,
-    address.postcode,
+    formatPostcodeFromAddress(address),
   ]
     .filter(x => x)
     .join(', ');
@@ -47,7 +60,7 @@ export function formatShortAddress(address: PropertyAddress) {
     address.addressLine1,
     address.addressLine2,
     address.addressLine3,
-    address.postcode,
+    formatPostcodeFromAddress(address),
   ]
     .filter(x => x)
     .join(', ');
