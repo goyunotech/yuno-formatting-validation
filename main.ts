@@ -9,7 +9,7 @@ import {
 import {
   checkIfTerminatedPostcode,
   checkIfValidPostcode,
-  checkPostcodeForCoordinates,
+  checkPostcodesForCoordinates,
 } from './lib/check';
 
 /**
@@ -39,5 +39,5 @@ export const validator = {
 export const checker = {
   checkIfValidPostcode,
   checkIfTerminatedPostcode,
-  checkPostcodeForCoordinates,
+  checkPostcodesForCoordinates,
 };

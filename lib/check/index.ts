@@ -24,6 +24,19 @@ declare type PostcodeStatus =
       longitude: number;
     };
 
+declare type PostcodeDetails = {
+  postcode: string;
+  country: string;
+  latitude: number;
+  longitude: number;
+};
+
+declare type Distance = {
+  distance: number;
+};
+
+declare type PostcodeDistanceDetails = PostcodeDetails & Distance;
+
 /**
  * Uses the postcodes.io API to check if the postcode is terminated
  * @param postcode Postcode string
@@ -94,17 +107,27 @@ export async function checkIfValidPostcode(
  * @param latitude
  * @param longitude
  */
-export async function checkPostcodeForCoordinates(
+export async function checkPostcodesForCoordinates(
   latitude: number,
   longitude: number,
-): Promise<Result<String, String>> {
+): Promise<Result<Array<PostcodeDistanceDetails>, String>> {
   try {
     const response = await postcodeIORequest.get(
       `postcodes/?lon=${longitude}&lat=${latitude}`,
     );
     console.error(response);
-    if (response.data && response.data.result.postcode) {
-      return { ok: true, value: response.data.result.postcode };
+    if (response.data && response.data.result) {
+      const postcodeDetails = response.data.result.map(entry => {
+        return {
+          postcode: entry.postcode,
+          country: entry.country,
+          latitude: entry.latitude,
+          longitude: entry.longitude,
+          distance: entry.distance,
+        };
+      });
+
+      return { ok: true, value: postcodeDetails };
     }
     return {
       ok: false,

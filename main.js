@@ -27,6 +27,6 @@ exports.validator = Object.assign({ isValidPostcode: validation_1.isValidPostcod
 exports.checker = {
     checkIfValidPostcode: check_1.checkIfValidPostcode,
     checkIfTerminatedPostcode: check_1.checkIfTerminatedPostcode,
-    checkPostcodeForCoordinates: check_1.checkPostcodeForCoordinates,
+    checkPostcodesForCoordinates: check_1.checkPostcodesForCoordinates,
 };
 //# sourceMappingURL=main.js.map
