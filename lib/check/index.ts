@@ -103,8 +103,8 @@ export async function checkPostcodeForCoordinates(
       `postcodes/?lon=${longitude}&lat=${latitude}`,
     );
     console.error(response);
-    if (response.data && response.data.postcode) {
-      return { ok: true, value: response.data.postcode };
+    if (response.data && response.data.result.postcode) {
+      return { ok: true, value: response.data.result.postcode };
     }
     return {
       ok: false,
