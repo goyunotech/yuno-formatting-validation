@@ -42,10 +42,10 @@ export async function checkIfTerminatedPostcode(
           ok: true,
           value: {
             terminated: true,
-            month_terminated: response.data.month_terminated,
-            year_terminated: response.data.year_terminated,
-            latitude: response.data.latitude,
-            longitude: response.data.longitude,
+            month_terminated: response.data.result.month_terminated,
+            year_terminated: response.data.result.year_terminated,
+            latitude: response.data.result.latitude,
+            longitude: response.data.result.longitude,
           },
         };
       } else if (response.status === 404) {
