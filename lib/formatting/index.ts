@@ -48,7 +48,7 @@ export function formatAddress(address: PropertyAddress) {
     address.city,
     formatPostcodeFromAddress(address),
   ]
-    .filter(x => x)
+    .filter((x) => x)
     .join(', ');
 }
 
@@ -62,13 +62,13 @@ export function formatShortAddress(address: PropertyAddress) {
     address.addressLine3,
     formatPostcodeFromAddress(address),
   ]
-    .filter(x => x)
+    .filter((x) => x)
     .join(', ');
 }
 
-const addZero = value => {
+const addZero = (value) => {
   if (value < 10) {
-    value = `0${value}`;
+    return `0${value}`;
   }
   return value;
 };

@@ -61,7 +61,8 @@ export async function checkIfTerminatedPostcode(
             longitude: response.data.result.longitude,
           },
         };
-      } else if (response.status === 404) {
+      }
+      if (response.status === 404) {
         // N.B. According to the docs, a 404 will also be returned if the
         // postcode string is invalid
         // http://postcodes.io/docs
@@ -117,7 +118,7 @@ export async function checkPostcodesForCoordinates(
     );
     console.error(response);
     if (response.data && response.data.result) {
-      const postcodeDetails = response.data.result.map(entry => {
+      const postcodeDetails = response.data.result.map((entry) => {
         return {
           postcode: entry.postcode,
           country: entry.country,
