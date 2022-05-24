@@ -5,6 +5,7 @@ import {
   formatAddress,
   formatShortAddress,
   formatPostcode,
+  formatStreetName
 } from './lib/formatting';
 import {
   checkIfTerminatedPostcode,
@@ -20,6 +21,7 @@ export const formatter = {
   formatShortAddress,
   formatDateDMYHMS,
   formatPostcode,
+  formatStreetName
 };
 
 /**

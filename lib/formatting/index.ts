@@ -1,5 +1,7 @@
 import { parse } from 'postcode';
 
+const removePunctuationsRegex = /[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]/g;
+
 /**
  * Models OS property data
  */
@@ -89,3 +91,13 @@ export function formatDateDMYHMS() {
   const sec = addZero(today.getSeconds());
   return `${day}/${month}/${year} ${hr}:${min}:${sec}`;
 }
+
+/**
+ * Format street names by Removing punctuations
+ * e.g. "Lordship Lane (North)" -> "lordship lane north"
+ * @param streetName streetName string
+ */
+export function formatStreetName(streetName) {
+  return streetName ? streetName.replace(removePunctuationsRegex, '') : '';
+}
+exports.formatStreetName = formatStreetName;
