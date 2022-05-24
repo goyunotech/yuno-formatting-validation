@@ -13,13 +13,16 @@ exports.formatter = {
     formatShortAddress: formatting_1.formatShortAddress,
     formatDateDMYHMS: formatting_1.formatDateDMYHMS,
     formatPostcode: formatting_1.formatPostcode,
+    formatStreetName: formatting_1.formatStreetName,
 };
 /**
  * Functions which perform common validations
  * These functions are all synchronous and run locally
  */
-exports.validator = Object.assign({ isValidPostcode: validation_1.isValidPostcode,
-    parsePostcode: validation_1.parsePostcode }, validatorLibrary);
+exports.validator = Object.assign({
+    isValidPostcode: validation_1.isValidPostcode,
+    parsePostcode: validation_1.parsePostcode
+}, validatorLibrary);
 /**
  * Functions which perform external checks
  * These functions may be asynchronous and rely on external services
