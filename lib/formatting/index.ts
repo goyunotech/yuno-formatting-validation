@@ -98,6 +98,6 @@ export function formatDateDMYHMS() {
  * @param streetName streetName string
  */
 export function formatStreetName(streetName) {
-  return streetName ? streetName.replace(removePunctuationsRegex, '') : '';
+  return streetName ? streetName.replace(removePunctuationsRegex, '').toLowerCase() : '';
 }
 exports.formatStreetName = formatStreetName;
