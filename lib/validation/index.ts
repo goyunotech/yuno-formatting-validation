@@ -33,3 +33,6 @@ export function parsePostcode(
 export function isValidPostcode(postcode: string): boolean {
   return isValid(postcode);
 }
+export function isNullOrEmpty(value?: string): boolean {
+  return value == null || value.length === 0 || /^\s*$/.test(value);
+}
