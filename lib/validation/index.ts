@@ -1,4 +1,5 @@
 import { isValid, parse } from 'postcode';
+import { isValidPhoneNumber as libIsValidPhoneNumber } from 'libphonenumber-js';
 
 declare type ValidPostcode = {
   valid: true;
@@ -35,4 +36,8 @@ export function isValidPostcode(postcode: string): boolean {
 }
 export function isNullOrEmpty(value?: string): boolean {
   return value == null || value.length === 0 || /^\s*$/.test(value);
+}
+
+export function isValidPhoneNumber(number: string): boolean {
+  return libIsValidPhoneNumber(number);
 }

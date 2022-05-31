@@ -1,9 +1,9 @@
 import * as validatorLibrary from 'validator';
 import {
-  isNullOrEmpty,
+  isNullOrEmpty, isValidPhoneNumber,
   isValidPostcode,
-  parsePostcode,
-} from './lib/validation';
+  parsePostcode
+} from "./lib/validation";
 import {
   formatDateDMYHMS,
   formatAddress,
@@ -36,6 +36,7 @@ export const validator = {
   isValidPostcode,
   parsePostcode,
   isNullOrEmpty,
+  isValidPhoneNumber,
   ...validatorLibrary,
 };
 
