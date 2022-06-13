@@ -11,6 +11,7 @@ import {
   checkIfTerminatedPostcode,
   checkIfValidPostcode,
   checkPostcodesForCoordinates,
+  checkPostcodeDetails
 } from './lib/check';
 
 /**
@@ -42,4 +43,5 @@ export const checker = {
   checkIfValidPostcode,
   checkIfTerminatedPostcode,
   checkPostcodesForCoordinates,
+  checkPostcodeDetails
 };

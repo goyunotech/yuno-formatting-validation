@@ -29,6 +29,9 @@ declare type PostcodeDetails = {
   country: string;
   latitude: number;
   longitude: number;
+  ward?: string,
+  councilOnsCode?: string,
+  wardOnsCode?:string
 };
 
 declare type Distance = {
@@ -138,3 +141,44 @@ export async function checkPostcodesForCoordinates(
     return { ok: false, error: `Error thrown by Axios ${e}` };
   }
 }
+
+/**
+ * get the postcode details
+ * @param postcode
+ */
+export async function checkPostcodeDetails(
+  postcode: String,
+): Promise<Result<PostcodeDetails, String>> {
+  try {
+    const response = await postcodeIORequest.get(
+      `postcodes/${postcode}`,
+    );
+    console.error(response);
+    if (response.data && response.data.result) {
+        const {
+            admin_ward: ward,
+            longitude,
+            latitude,
+            postcode,
+            country,
+            codes: { admin_district: councilOnsCode, admin_ward: wardOnsCode },
+      } = response.data.result;    
+      
+    
+      const postcodeDetails = {
+        ward, longitude, latitude, councilOnsCode, wardOnsCode, postcode,
+        country
+      };
+
+     return { ok: true, value: postcodeDetails };
+    }
+    return {
+      ok: false,
+      error: `No data returned from postcodes.io ${String(response)}`,
+    };
+  } catch (e) {
+    return { ok: false, error: `Error thrown by Axios ${e}` };
+  }
+}
+
+
