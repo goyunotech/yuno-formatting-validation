@@ -1,5 +1,5 @@
 import * as validatorLibrary from 'validator';
-import { isValidPostcode, parsePostcode } from './lib/validation';
+import { isNullOrEmpty, isValidPhoneNumber, isValidPostcode, parsePostcode } from "./lib/validation";
 import { formatDateDMYHMS, formatAddress, formatShortAddress, formatPostcode, formatStreetName } from './lib/formatting';
 import { checkIfTerminatedPostcode, checkIfValidPostcode, checkPostcodesForCoordinates, checkPostcodeDetails } from './lib/check';
 /**
@@ -21,6 +21,8 @@ export const formatter = {
 export const validator = {
   isValidPostcode,
   parsePostcode,
+  isNullOrEmpty,
+  isValidPhoneNumber,
   ...validatorLibrary
 };
 /**
