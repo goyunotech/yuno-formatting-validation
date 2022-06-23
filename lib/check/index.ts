@@ -51,7 +51,6 @@ export async function checkIfTerminatedPostcode(
     const response = await postcodeIORequest.get(
       `terminated_postcodes/${postcode}`,
     );
-    console.error(response);
     if (response.status) {
       if (response.status === 200) {
         return {
@@ -72,11 +71,13 @@ export async function checkIfTerminatedPostcode(
         return { ok: true, value: { terminated: false } };
       }
     }
+    console.error(response);
     return {
       ok: false,
       error: `Unexpected response from postcodes.io ${String(response)}`,
     };
   } catch (e) {
+    console.error(e);
     return { ok: false, error: `Error thrown by Axios ${e}` };
   }
 }
@@ -92,16 +93,17 @@ export async function checkIfValidPostcode(
     const response = await postcodeIORequest.get(
       `postcodes/${postcode}/validate`,
     );
-    console.error(response);
     if (response.data) {
       const isValid = response.data.result ? response.data.result : false;
       return { ok: true, value: isValid };
     }
+    console.error(response);
     return {
       ok: false,
       error: `No data returned from postcodes.io ${String(response)}`,
     };
   } catch (e) {
+    console.error(e);
     return { ok: false, error: `Error thrown by Axios ${e}` };
   }
 }
@@ -119,7 +121,6 @@ export async function checkPostcodesForCoordinates(
     const response = await postcodeIORequest.get(
       `postcodes/?lon=${longitude}&lat=${latitude}`,
     );
-    console.error(response);
     if (response.data && response.data.result) {
       const postcodeDetails = response.data.result.map((entry) => {
         return {
@@ -133,11 +134,13 @@ export async function checkPostcodesForCoordinates(
 
       return { ok: true, value: postcodeDetails };
     }
+    console.error(response);
     return {
       ok: false,
       error: `No data returned from postcodes.io ${String(response)}`,
     };
   } catch (e) {
+    console.error(e);
     return { ok: false, error: `Error thrown by Axios ${e}` };
   }
 }
@@ -153,7 +156,6 @@ export async function checkPostcodeDetails(
     const response = await postcodeIORequest.get(
       `postcodes/${postcode}`,
     );
-    console.error(response);
     if (response.data && response.data.result) {
         const {
             admin_ward: ward,
@@ -172,11 +174,13 @@ export async function checkPostcodeDetails(
 
      return { ok: true, value: postcodeDetails };
     }
+    console.error(response)
     return {
       ok: false,
       error: `No data returned from postcodes.io ${String(response)}`,
     };
   } catch (e) {
+    console.error(e);
     return { ok: false, error: `Error thrown by Axios ${e}` };
   }
 }
