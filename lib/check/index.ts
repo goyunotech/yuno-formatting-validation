@@ -71,13 +71,11 @@ export async function checkIfTerminatedPostcode(
         return { ok: true, value: { terminated: false } };
       }
     }
-    console.error(response);
     return {
       ok: false,
       error: `Unexpected response from postcodes.io ${String(response)}`,
     };
   } catch (e) {
-    console.error(e);
     return { ok: false, error: `Error thrown by Axios ${e}` };
   }
 }
@@ -97,13 +95,11 @@ export async function checkIfValidPostcode(
       const isValid = response.data.result ? response.data.result : false;
       return { ok: true, value: isValid };
     }
-    console.error(response);
     return {
       ok: false,
       error: `No data returned from postcodes.io ${String(response)}`,
     };
   } catch (e) {
-    console.error(e);
     return { ok: false, error: `Error thrown by Axios ${e}` };
   }
 }
@@ -134,13 +130,11 @@ export async function checkPostcodesForCoordinates(
 
       return { ok: true, value: postcodeDetails };
     }
-    console.error(response);
     return {
       ok: false,
       error: `No data returned from postcodes.io ${String(response)}`,
     };
   } catch (e) {
-    console.error(e);
     return { ok: false, error: `Error thrown by Axios ${e}` };
   }
 }
@@ -174,13 +168,11 @@ export async function checkPostcodeDetails(
 
      return { ok: true, value: postcodeDetails };
     }
-    console.error(response)
     return {
       ok: false,
       error: `No data returned from postcodes.io ${String(response)}`,
     };
   } catch (e) {
-    console.error(e);
     return { ok: false, error: `Error thrown by Axios ${e}` };
   }
 }

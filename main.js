@@ -31,6 +31,6 @@ exports.checker = {
     checkIfValidPostcode: check_1.checkIfValidPostcode,
     checkIfTerminatedPostcode: check_1.checkIfTerminatedPostcode,
     checkPostcodesForCoordinates: check_1.checkPostcodesForCoordinates,
-    checkPostcodeDetails: check_1.checkPostcodeDetails,    
+    checkPostcodeDetails: check_1.checkPostcodeDetails
 };
 //# sourceMappingURL=main.js.map
