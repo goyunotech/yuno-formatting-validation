@@ -29,9 +29,9 @@ declare type PostcodeDetails = {
   country: string;
   latitude: number;
   longitude: number;
-  ward?: string,
-  councilOnsCode?: string,
-  wardOnsCode?:string
+  ward?: string;
+  councilOnsCode?: string;
+  wardOnsCode?: string;
 };
 
 declare type Distance = {
@@ -115,7 +115,7 @@ export async function checkPostcodesForCoordinates(
 ): Promise<Result<Array<PostcodeDistanceDetails>, String>> {
   try {
     const response = await postcodeIORequest.get(
-      `postcodes/?lon=${longitude}&lat=${latitude}`,
+      `postcodes/?lon=${longitude}&lat=${latitude}&radius=2000`,
     );
     if (response.data && response.data.result) {
       const postcodeDetails = response.data.result.map((entry) => {
@@ -147,26 +147,28 @@ export async function checkPostcodeDetails(
   postcode: String,
 ): Promise<Result<PostcodeDetails, String>> {
   try {
-    const response = await postcodeIORequest.get(
-      `postcodes/${postcode}`,
-    );
+    const response = await postcodeIORequest.get(`postcodes/${postcode}`);
     if (response.data && response.data.result) {
-        const {
-            admin_ward: ward,
-            longitude,
-            latitude,
-            postcode,
-            country,
-            codes: { admin_district: councilOnsCode, admin_ward: wardOnsCode },
-      } = response.data.result;    
-      
-    
+      const {
+        admin_ward: ward,
+        longitude,
+        latitude,
+        postcode,
+        country,
+        codes: { admin_district: councilOnsCode, admin_ward: wardOnsCode },
+      } = response.data.result;
+
       const postcodeDetails = {
-        ward, longitude, latitude, councilOnsCode, wardOnsCode, postcode,
-        country
+        ward,
+        longitude,
+        latitude,
+        councilOnsCode,
+        wardOnsCode,
+        postcode,
+        country,
       };
 
-     return { ok: true, value: postcodeDetails };
+      return { ok: true, value: postcodeDetails };
     }
     return {
       ok: false,
@@ -176,5 +178,3 @@ export async function checkPostcodeDetails(
     return { ok: false, error: `Error thrown by Axios ${e}` };
   }
 }
-
-
