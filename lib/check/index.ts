@@ -172,7 +172,7 @@ export async function checkPostcodeDetails(
     }
     return {
       ok: false,
-      error: `No data returned from postcodes.io ${String(response)}`,
+      error: `No data returned from postcodes.io ${JSON.stringify(response)}`,
     };
   } catch (e) {
     return { ok: false, error: `Error thrown by Axios ${e}` };
